@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Song App</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="welcome-screen">
+            <h1> Welcome to Songify </h1>
+            <h3> Enter name to access your account </h3>
+            <div class="input-wrapper">
+                <input type="text" placeholder="Name">
+                <button> Go </button>
+            </div>
+        </section>
+        <section class="main hidden">
+            <h1>  </h1>
+        </section>
+    </div>
+    <script src="jquery.js">
+    </script>
+</body>
+
+</html>
+<script>
+$('.welcome-screen button').on('click', function() {
+    var input = $('.welcome-screen input');
+    var message = "Welcome " + input.val();
+    $('.main h1').text(message);
+    $('.welcome-screen').addClass('hidden');
+    $('.main').removeClass('hidden');
+});
+</script>
