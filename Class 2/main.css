@@ -81,3 +81,7 @@ h1 {
 .error {
     border: 2px solid red;
 }
+
+.play-icon {
+    color: teal;
+}

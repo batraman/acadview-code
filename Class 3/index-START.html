@@ -23,20 +23,25 @@
         <header> <div class="right floated user-name">  </div> </header>
         <section class="content">
         <audio src="song.mp3"></audio>
+        <div class="song-name"></div>
         </section>  
         <footer> 
         <div class="controls">
+        <div class="player-buttons">
         <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+        </div>
+        <div class="progress-wrapper">
+        <span class="time-elapsed"> </span>        
+        <div class="player-progress"> <div class="progress-filled"> </div></div>
+        <span class="song-duration"></span>
+        </div>
         </div>
         </footer>
         </div>
     </div>
     <script src="jquery.js">
     </script>
-</body>
-
-</html>
-<script>
+    <script>
 $('.welcome-screen button').on('click', function() {
     var name = $('#name-input').val();
     if(name.length > 2) {
@@ -63,3 +68,5 @@ $('.play-icon').on('click',function() {
     }
 });
 </script>
+</body>
+</html>

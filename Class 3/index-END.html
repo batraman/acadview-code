@@ -22,20 +22,25 @@
         <header> <div class="right floated user-name">  </div> </header>
         <section class="content">
         <audio src="song.mp3"></audio>
+        <div class="song-name"></div>
         </section>  
         <footer> 
         <div class="controls">
+        <div class="player-buttons">
         <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+        </div>
+        <div class="progress-wrapper">
+        <span class="time-elapsed"> </span>        
+        <div class="player-progress"> <div class="progress-filled"> </div></div>
+        <span class="song-duration"></span>
+        </div>
         </div>
         </footer>
         </div>
     </div>
     <script src="jquery.js">
     </script>
-</body>
-
-</html>
-<script>
+    <script>
 $('.welcome-screen button').on('click', function() {
     var name = $('#name-input').val();
     if(name.length > 2) {
@@ -48,34 +53,60 @@ $('.welcome-screen button').on('click', function() {
         $('#name-input').addClass('error');
     }
 });
-$('.play-icon').on('click',function() {
+
+function toggleSong() {
     var song = document.querySelector('audio');
     if(song.paused == true) {
-    console.log('Playing');
-    $('.play-icon').removeClass('fa-play').addClass('fa-pause');
-    song.play();
+        console.log('Playing');
+        $('.play-icon').removeClass('fa-play').addClass('fa-pause');
+        song.play();
     }
     else {
-    console.log('Pausing');
-    $('.play-icon').removeClass('fa-pause').addClass('fa-play');
-    song.pause();
+        console.log('Pausing');
+        $('.play-icon').removeClass('fa-pause').addClass('fa-play');
+        song.pause();
     }
+}
+
+$('.play-icon').on('click', function() {
+    toggleSong();
 });
 
 $('body').on('keypress',function(event) {
     if (event.keyCode == 32)
     {
-        var song = document.querySelector('audio');
-        if(song.paused == true) {
-            console.log('Playing');
-            $('.play-icon').removeClass('fa-play').addClass('fa-pause');
-            song.play();
-        }
-        else {
-            console.log('Pausing');
-            $('.play-icon').removeClass('fa-pause').addClass('fa-play');
-            song.pause();
-        }
+        toggleSong();
     }
 });
+
+function prettifyTime(num) {
+    if(num < 10) {
+        num = '0' + num;
+    }
+    return num;
+}
+
+function updateCurrentTime() {
+    var song = document.querySelector('audio');
+    var currentTimeInMinutes = Math.floor(song.currentTime/60);
+    currentTimeInMinutes = prettifyTime(currentTimeInMinutes)
+    var durationInMinutes = Math.floor(song.duration/60);
+    durationInMinutes = prettifyTime(durationInMinutes);
+    var currentTimeInSeconds = Math.floor(song.currentTime%60);
+    currentTimeInSeconds = prettifyTime(currentTimeInSeconds);
+    var durationInSeconds = Math.floor(song.duration%60);
+    durationInSeconds = prettifyTime(durationInSeconds);
+    $('.time-elapsed').text(currentTimeInMinutes + ':' + currentTimeInSeconds);
+    $('.song-duration').text(durationInMinutes + ':' + durationInSeconds);
+}
+
+window.onload = function() {
+    updateCurrentTime(); 
+    setInterval(function() {
+        updateCurrentTime();
+    },1000);
+}
+
 </script>
+</body>
+</html>
