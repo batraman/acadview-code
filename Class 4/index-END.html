@@ -23,20 +23,35 @@
         <section class="content">
         <audio src="song1.mp3"></audio>
         <div class="list-headers">
-        <div> Title </div>
+        <div> Title </div> 
+        <div> Artist </div>
+        <div> Album </div>
+        <div> Duration </div>
         </div>
         <div class="song-list">
             <div class="song" id="song1">
-            <span class="song-name"> </span>
+            <span class="song-name"></span>
+            <span class="song-artist"></span>
+            <span class="song-album"></span>
+            <span class="song-length"></span>
             </div>
             <div class="song" id="song2">
-            <span class="song-name"> </span>
+            <span class="song-name"></span>
+            <span class="song-artist"></span>
+            <span class="song-album"></span>
+            <span class="song-length"></span>
             </div>
             <div class="song" id="song3">
-            <span class="song-name"> </span>
+            <span class="song-name"></span>
+            <span class="song-artist"></span>
+            <span class="song-album"></span>
+            <span class="song-length"></span>
             </div>
             <div class="song" id="song4">
-            <span class="song-name"> </span>
+            <span class="song-name"></span>
+            <span class="song-artist"></span>
+            <span class="song-album"></span>
+            <span class="song-length"></span>
             </div>
         </div>
         </section>  
@@ -115,62 +130,29 @@ function updateCurrentTime() {
     $('.time-elapsed').text(currentTimeInMinutes + ':' + currentTimeInSeconds);
     $('.song-duration').text(durationInMinutes + ':' + durationInSeconds);
 }
-// var songName1 = 'Badri Ki Dulhania (Title Track)';
-// var songName2 = 'Humma Song';
-// var songName3 = 'Nashe Si Chadh Gayi';
-// var songName4 = 'The Breakup Song';
+
 var songList = ['Badri Ki Dulhania (Title Track)', 'Humma Song', 'Nashe Si Chadh Gayi', 'The Breakup Song'];
 
 var fileNames = ['song1.mp3','song2.mp3','song3.mp3','song4.mp3'];
 
-$('#song1').click(function() {
-    var audio = document.querySelector('audio');
-    if(audio.src == fileNames[0])
-    {
-        toggleSong();
-    }
-    else {
-    audio.src = fileNames[0];
-    toggleSong();
-    }
-});
+function addSongNameClickEvent(songName,position) {
+    position = position + 1;
+    var id = '#song' + position;
+    $(id).click(function() {
+        var audio = document.querySelector('audio');
+        var currentSong = audio.src;
+        if(currentSong.search(songName) != -1)
+        {
+            toggleSong();
+        }
+        else {
+            audio.src = songName;
+            toggleSong();
+       }
+    });
+}
 
-$('#song2').click(function() {
-    var audio = document.querySelector('audio');
-    if(audio.src.search(fileNames[1]) !== -1)
-    {
-        toggleSong();
-    }
-    else {
-    audio.src = fileNames[1];
-    toggleSong();
-    }
-});
-
-$('#song3').click(function() {
-    var audio = document.querySelector('audio');
-    if(audio.src.search(fileNames[2]) !== -1)
-    {
-        toggleSong();
-    }
-    else {
-    audio.src = fileNames[2];
-    toggleSong();
-    }
-});
-
-$('#song4').click(function() {
-    var audio = document.querySelector('audio');
-    if(audio.src.search(fileNames[3]) !== -1)
-    {
-        toggleSong();
-    }
-    else {
-    audio.src = fileNames[3];
-    toggleSong();
-    }
-});
-
+fileNames.forEach(addSongNameClickEvent);
 
 window.onload = function() {
     $('#song1 .song-name').text(songList[0]);
