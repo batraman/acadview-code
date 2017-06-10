@@ -1,12 +1,7 @@
-footer {
+/*footer {
     background-color: rgba(0, 0, 0, 0.87);
     height: 30px;
-}
-
-header {
-    background-color: #4267b2;
-    height: 40px;
-}
+}*/
 
 #wrapper {
     margin-top: 16px;
@@ -20,17 +15,6 @@ header {
     // background-color: #e9ebee;
 }
 
-#main {
-    background-color: orange;
-}
-
-#menu {
-    background-color: pink;
-}
-
-#sidebar {
-    background-color: yellow;
-}
 
 #main,
 #menu,
@@ -38,26 +22,32 @@ header {
     background-color: #e9ebee;
 }
 
-// body {
-//     padding-top: 70px;
+
+#header {
+  background-color: #4267b2;
+  color: white;
+}
+
+// .white-text {
+//   color: white !important;
 // }
-nav.navbar-default {
-    background-color: #4267b2;
-    color: white;
+
+#white-text {
+  color: white;
 }
 
-nav.navbar-default .navbar-brand {
-    color: white;
-}
-
-nav.navbar-default .navbar-nav>li>a {
-    color: white;
-}
-
-#top-nav {
-    min-height: 40px;
-}
-
-#top-nav .glyphicon {
+#header ul .glyphicon {
     font-size: 20px;
+}
+
+// Descendant selector
+// mehnat
+ul .glyphicon {
+
+}
+
+// Child Selector
+// aalsi
+ul > .glyphicon {
+
 }
