@@ -10,7 +10,16 @@
     // background-color: #e9ebee;
 }
 
-#main,
+
+
+#menu {
+    background-color: pink;
+}
+
+#sidebar {
+    background-color: yellow;
+}
+
 #menu,
 #sidebar {
     background-color: #e9ebee;
@@ -27,6 +36,14 @@ nav.navbar-default {
 
 nav.navbar-default .navbar-brand {
     color: white;
+}
+
+#main {
+    overflow: auto;
+}
+
+#main::-webkit-scrollbar {
+    display: none;
 }
 
 nav.navbar-default .navbar-nav>li>a {
@@ -49,3 +66,24 @@ body {
 
 /* Write custom CSS below this line */ 
 
+.list-heading {
+    padding: 20px 15px 0 15px;
+}
+
+.panel-body .glyphicon {
+    margin-left: 10px;
+    margin-right: 4px;
+}
+
+.text-post {
+    margin-bottom: 15px;
+    margin-top: 0
+}
+
+.image-post {
+    margin-bottom: 15px;
+}
+
+.video-post {
+    margin-bottom: 15px;
+}
