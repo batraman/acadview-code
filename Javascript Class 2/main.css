@@ -73,6 +73,9 @@ h1 {
 .right.floated {
     float: right;
 }
+.left.floated {
+  float: left;
+}
 
 .clickable {
     cursor: pointer;
@@ -80,8 +83,4 @@ h1 {
 
 .error {
     border: 2px solid red;
-}
-
-.play-icon {
-    color: teal;
 }

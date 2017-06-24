@@ -14,12 +14,34 @@
             <h3> Enter name to access your account </h3>
             <div class="input-wrapper">
                 <input type="text" placeholder="Name" id="name-input">
-                <button> Go </button>
+                <button id="go-button"> Go </button>
             </div>
         </section>
         <section class="main hidden">
-            <h1>  </h1>
+            <h1></h1>
         </section>
     </div>
+    <script src="jquery.js"></script>
+    <script>
+    // Tiny person ko kaha bithana hai? Button par
+    // var btn = document.querySelector('.welcome-screen button');
+    // // Button par tiny person ko bithao and click event ki nigrani karwao
+    // btn.addEventListener('click',function() {
+    // // Tiny person ko maine jo code diya run karne ke liye
+    // var name = document.querySelector('#name-input').value;
+    // console.log(name);
+    //
+    // });
+
+    $('.welcome-screen button').on('click', function() {
+    var value = $('#name-input').val();
+    var message = 'Welcome Back, ' + value;
+    // var message = value + "Welcome Back, ";
+      // console.log(message);
+      $('.main h1').text(message);
+      $('.welcome-screen').addClass('hidden');
+      $('.main').removeClass('hidden');
+    });
+    </script>
 </body>
 </html>
