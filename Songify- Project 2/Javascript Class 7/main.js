@@ -104,6 +104,16 @@ $('audio').on('ended',function() {
     }
 })
 
+$('audio').on('ended',function() {
+    var audio = document.querySelector('audio');
+    if(currentSongNumber < 4) {
+        // Play the next song
+    }
+    else {
+        // Stop Playing
+    }
+})
+
 $('.play-icon').on('click', function() {
     toggleSong();
 });
@@ -116,10 +126,11 @@ $('.fa-repeat').on('click',function() {
 $('.fa-random').on('click',function() {
     $('.fa-random').toggleClass('disabled')
     willShuffle = 1 - willShuffle;
-})
+});
 
 $('body').on('keypress',function(event) {
     var target = event.target;
+    console.log(event)
     if (event.keyCode == 32 && target.tagName !='INPUT')
     {
         toggleSong();
