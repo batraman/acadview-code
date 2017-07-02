@@ -1,77 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title> Song App</title>
-    <link rel="stylesheet" type="text/css" href="font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-
-<body>
-     <div class="wrapper">
-        <section class="welcome-screen hidden">
-            <h1> Welcome to Songify </h1>
-            <h3> Enter name to access your account </h3>
-            <div class="input-wrapper">
-                <input type="text" placeholder="Name" id="name-input">
-                <button> Go </button>
-            </div>
-        </section>
-        <div class="main">
-        <header> <div class="right floated user-name">  </div> </header>
-        <section class="content">
-        <audio src="song1.mp3"></audio>
-        <div class="list-headers">
-        <div> Title </div> 
-        <div> Artist </div>
-        <div> Album </div>
-        <div> Duration </div>
-        </div>
-        <div class="song-list">
-            <div class="song" id="song1">
-            <span class="song-name"></span>
-            <span class="song-artist"></span>
-            <span class="song-album"></span>
-            <span class="song-length"></span>
-            </div>
-            <div class="song" id="song2">
-            <span class="song-name"></span>
-            <span class="song-artist"></span>
-            <span class="song-album"></span>
-            <span class="song-length"></span>
-            </div>
-            <div class="song" id="song3">
-            <span class="song-name"></span>
-            <span class="song-artist"></span>
-            <span class="song-album"></span>
-            <span class="song-length"></span>
-            </div>
-            <div class="song" id="song4">
-            <span class="song-name"></span>
-            <span class="song-artist"></span>
-            <span class="song-album"></span>
-            <span class="song-length"></span>
-            </div>
-        </div>
-        </section>  
-        <footer> 
-        <div class="controls">
-        <div class="player-buttons">
-        <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
-        </div>
-        <div class="progress-wrapper">
-        <span class="time-elapsed"> </span>        
-        <div class="player-progress"> <div class="progress-filled"> </div></div>
-        <span class="song-duration"></span>
-        </div>
-        </div>
-        </footer>
-        </div>
-    </div>
-    <script src="jquery.js">
-    </script>
-    <script>
 $('.welcome-screen button').on('click', function() {
     var name = $('#name-input').val();
     if(name.length > 2) {
@@ -132,35 +58,49 @@ function updateCurrentTime() {
 }
 
 var songs = [{
-        'name': 'Badri Ki Dulhania (Title Track)',
-        'artist': 'Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi',
+        'name': 'Tamma Tamma Again',
+        'artist': 'Badshah, Bappi Lahiri, Anuradha Paudwal',
         'album': 'Badrinath ki Dulhania',
         'duration': '2:56',
-       'fileName': 'song1.mp3'
+       'fileName': 'song1.mp3',
+        'image': 'song1.jpg'
+
     },
     {
         'name': 'Humma Song',
         'artist': 'Badshah, Jubin Nautiyal, Shashaa Tirupati',
         'album': 'Ok Jaanu',
         'duration': '3:15',
-        'fileName': 'song2.mp3'
+        'fileName': 'song2.mp3',
+        'image': 'song2.jpg'
     },
     {
         'name': 'Nashe Si Chadh Gayi',
         'artist': 'Arijit Singh',
         'album': 'Befikre',
         'duration': '2:34',
-        'fileName': 'song3.mp3'
+        'fileName': 'song3.mp3',
+        'image': 'song3.jpg'
+
     },
     {
         'name': 'The Breakup Song',
         'artist': 'Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi',
         'album': 'Ae Dil Hai Mushkil',
         'duration': '2:29',
-        'fileName': 'song4.mp3'
+        'fileName': 'song4.mp3',
+        'image': 'song4.jpg'
+
     }]
 
-function addSongNameClickEvent(songName,position) {
+function changeCurrentSongDetails(songObj) {
+    $('.current-song-image').attr('src','img/' + songObj.image)
+    $('.current-song-name').text(songObj.name)
+    $('.current-song-album').text(songObj.album)
+}
+
+function addSongNameClickEvent(songObj,position) {
+    var songName = songObj.fileName;
     position = position + 1;
     var id = '#song' + position;
     $(id).click(function() {
@@ -173,6 +113,7 @@ function addSongNameClickEvent(songName,position) {
         else {
             audio.src = songName;
             toggleSong();
+            changeCurrentSongDetails(songObj);
        }
     });
 }
@@ -184,6 +125,7 @@ function addSongNameClickEvent(songName,position) {
 
 window.onload = function() {
 
+    changeCurrentSongDetails(songs[0]);
     for(var i =0; i < songs.length;i++) {
         var obj = songs[i];
         var name = '#song' + (i+1);
@@ -192,7 +134,7 @@ window.onload = function() {
         song.find('.song-artist').text(obj.artist);
         song.find('.song-album').text(obj.album);
         song.find('.song-length').text(obj.duration);
-        addSongNameClickEvent(obj.fileName,i)
+        addSongNameClickEvent(obj,i)
     }
     
 
@@ -200,8 +142,7 @@ window.onload = function() {
     setInterval(function() {
         updateCurrentTime();
     },1000);
+    $('#songs').DataTable({
+        paging: false
+    });
 }
-
-</script>
-</body>
-</html>
